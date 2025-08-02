@@ -25,7 +25,7 @@ if __name__ == "__main__":
         n = int(input("Enter a positive integer: "))
         if n < 1:
             raise ValueError("Number must be positive.") #validate input
-        sum_of_even_numbers(n)
-        sum_of_odd_numbers(n)
+        sum_of_even_numbers(n) #call function to sum even numbers
+        sum_of_odd_numbers(n) #call function to sum odd numbers
     except ValueError as e:
         print("Error:", e)
