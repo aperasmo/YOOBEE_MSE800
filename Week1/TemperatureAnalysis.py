@@ -20,6 +20,7 @@ def convert_to_fahrenheit(temp_list):
 #  find days with temperature > 20°C
 def find_hot_days(temp_list, threshold=20):
     return np.where(temp_list > threshold)[0]
+
      
     
 average = get_average(temps_celsius)
@@ -36,7 +37,7 @@ if __name__ == "__main__":
         print(f"Highest temperature: {high}°C")
         print(f"Lowest temperature: {low}°C")
         print("Temperatures in Fahrenheit:",(temps_fahrenheit))
-        print("Days with temperature > 20°C (indices):", hot_days)
+        print("Days with temperature > 20°C (0=Mon,6=Sun)):", temps_celsius[hot_days])
         
     except ValueError as e:
         print("Error:", e)
