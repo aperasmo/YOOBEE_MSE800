@@ -27,7 +27,9 @@ average = get_average(temps_celsius)
 high, low = get_extremes(temps_celsius)
 temps_fahrenheit = convert_to_fahrenheit(temps_celsius)
 hot_days = find_hot_days(temps_celsius)
-        
+
+days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+hot_days = [day for day, temp in zip(days, temps_celsius) if temp > 20]     
         
 if __name__ == "__main__":
     try:
@@ -37,7 +39,7 @@ if __name__ == "__main__":
         print(f"Highest temperature: {high}°C")
         print(f"Lowest temperature: {low}°C")
         print("Temperatures in Fahrenheit:",(temps_fahrenheit))
-        print("Days with temperature > 20°C (0=Mon,6=Sun)):", temps_celsius[hot_days])
+        print("Days with temperature > 20°C):", hot_days)
         
     except ValueError as e:
         print("Error:", e)
