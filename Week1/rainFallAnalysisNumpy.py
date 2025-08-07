@@ -36,14 +36,20 @@ def heavy_rain_indexes(rainfall_array, threshold=5):
     """Find the days with rainfall more than the threshold."""
     return np.where(rainfall_array > threshold)[0]  #returns indices of days with rainfall > threshold
 
-"""
+
 def days_with_heavy_rain(rainfall_array, threshold=5):
     #Find the days with rainfall more than the threshold.
     return np.where(rainfall_array > threshold)[0]  #returns indices of days with rainfall > threshold
 
 days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] #List of days in a week
 days_with_heavy_rain = [day for day, rain_count in zip(days, rainfall_array) if rain_count > 5] #days with rainfall more than 5 mm     
-"""
+
+def heavy_rain_days(rainfall_array):
+    print("Days with rainfall more than 5 mm (Index - Days):")
+    for index in heavy_rain_indexes(rainfall_array):
+        print(f'\t{index}-{days[index]}')
+    print()
+    
 if __name__ == "__main__":
     try:
         # Display the results
@@ -52,9 +58,9 @@ if __name__ == "__main__":
         print(f"Average rainfall for the week: {average_rainfall(rainfall_array):.2f} mm")  # Display the average rainfall
         print(f"Number of days with no rain: {no_rain_days(rainfall_array)}")   # Count days with no rain
         print(f"Number of days with rain: {np.count_nonzero(rainfall_array > 0)}")  # Count days with rain 
-        print(f"Days with rainfall more than 5 mm (by index): {heavy_rain_indexes(rainfall_array)}")  # Display days with heavy rain
+        #print(f"Days with rainfall more than 5 mm (by index): {heavy_rain_indexes(rainfall_array)}")  # Display days with heavy rain
         #print("Days with rainfall more than 5 mm:", days_with_heavy_rain)  # Display days with heavy rain
-        
+        heavy_rain_days(rainfall_array) # Display days with heavy rain
             
     except Exception as e:
         print("An error occurred:", e)
