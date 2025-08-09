@@ -9,7 +9,7 @@ class StringManipulator:
     def to_uppercase(input_string): # This method converts the input string to uppercase
         return input_string.upper()
 
-    def to_lowercase(input_string): #   
+    def to_lowercase(input_string): # This method converts the input string to lowercase
         return input_string.lower()
         
 def main():

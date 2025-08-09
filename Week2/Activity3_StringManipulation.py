@@ -11,7 +11,7 @@ class StringManipulator():
     def to_uppercase(self): #  Convert the string to uppercase
         return self.input_string.upper()
 
-    def to_lowercase(input_string): #   
+    def to_lowercase(input_string): # Convert the string to lowercase
         return input_string.lower()
 
 def main():
