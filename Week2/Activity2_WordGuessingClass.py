@@ -124,7 +124,7 @@ class WordGuessingGame:
         Get the current game status.
         
         Returns:
-            dict: Current game state information
+            dict: Current game state information including word length, current display, attempts left, guessed letters, game over status, and win status.
         """
         return {
             "word_length": len(self.word),
@@ -141,7 +141,7 @@ class WordGuessingGame:
         print(f"Try to guess the word. You have {self.max_attempts} attempts.")
         
         while not self.game_over:
-            status = self.get_game_status()
+            status = self.get_game_status() # initialize the game status
             print(f"\nCurrent word is {status['word_length']} letters: {status['current_display']}")
             
             guess = input("Enter a letter: ")
@@ -150,11 +150,11 @@ class WordGuessingGame:
         
         # Ask if player wants to play again
         play_again = input("\nWould you like to play again? (y/n): ").lower()
-        if play_again == 'y':
+        if play_again == 'y':   #go back to the start of the game in while loop
             self.reset_game()
             self.start_game()
         else:
-            print("Thank you for playing! Goodbye! 👋")
+            print("Thank you for playing! Goodbye! 👋") #end game
 
 def main():
     """Main function to run the game."""
