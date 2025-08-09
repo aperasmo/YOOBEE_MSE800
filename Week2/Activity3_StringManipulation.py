@@ -5,7 +5,7 @@ class StringManipulator():
     def find_character(self,char): # Find the index of a character in the string
         return  self.input_string.find(char)
         
-    def get_length(self):   
+    def get_length(self):   # Get the length of the input string
         return len(self.input_string)
 
     def to_uppercase(self): #  Convert the string to uppercase
