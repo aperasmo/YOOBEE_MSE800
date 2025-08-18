@@ -11,7 +11,7 @@ The system will records:
 
 # Main entities 
 
-1. student - studying at Yoobee College: Key attributes: student_id (PK), name (VARCHAR), email (VARCHAR), status (VARCHAR)
+1. student - studying at Yoobee College
 - Key attributes: `student_id` (PK), `name` (VARCHAR), `contact_number` (VARCHAR),`email` (VARCHAR), `status` (VARCHAR)
 
 2. lecturer -  who teaches the class 
