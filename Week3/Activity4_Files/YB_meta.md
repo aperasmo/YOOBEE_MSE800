@@ -1,6 +1,7 @@
-#Database for Yoobee College#
+# Database for Yoobee College
+
 Developing a small information system for Yoobee College. 
-The database will store students, lecturers, the courses offered, and student enrollments with a final grade for that class.
+The database will store students, lecturers, the courses offered, and student enrollments.
 
 # Main entities 
 
