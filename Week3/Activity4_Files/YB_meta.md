@@ -26,9 +26,9 @@ The system will records:
 5. student_enrollments - A record linking a student to a class offering, including participation and final outcome.
 - Key attributes: `student_enrollments_id` (PK), `student_id` (FK → Student), `class_id` (FK → class), `enrolled_date` (TEXT), `status` (TEXT), `grade` (INT)
 
-#Database Schema Diagram
+#Database Diagram
 
-![Yoobee Students Database Schema](assets/YB_Diagram.png)
+![Yoobee Students Database Schema](img/YB_Diagram.png)
 
 
 
