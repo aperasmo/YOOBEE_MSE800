@@ -22,7 +22,7 @@ The database will store students, lecturers, the courses offered, and student en
 
 #Database Schema Diagram
 
-![Yoobee Students Database Schema](Activity4_Files/assets/yoobee_students_diagram.png)
+![Yoobee Students Database Schema](Activity4_Files/assets/YB_Diagram.png)
 
 
 
