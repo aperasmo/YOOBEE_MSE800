@@ -3,6 +3,12 @@
 Developing a small information system for Yoobee College. 
 The database will store students, lecturers, the courses offered, and student enrollments.
 
+The system will records:
+- Student enrollment – Identifies which student is registered in which class
+- Instructor assignment – Specifies which instructor teaches each class
+- Academic outcome – Records the student’s final result in the clas
+
+
 # Main entities 
 
 1. student - studying at Yoobee College: Key attributes: student_id (PK), name (VARCHAR), email (VARCHAR), status (VARCHAR)
