@@ -35,7 +35,8 @@ The system will records:
 
 # Database Diagram
 
-![Yoobee Students Database Schema](img/YB_Diagram.png)
+![Yoobee College Database Schema](img/YB_Diagram.png)
 
+![Yoobee College ERD](img/yoobee_erd.png)
 
 
