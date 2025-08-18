@@ -16,7 +16,6 @@ The database will store students, lecturers, the courses offered, and student en
 
 4. class - Scheduled offering of a course within a specific term
 - Key attributes: `class_id` (PK), `course_id` (FK → Course), `lecturer_id` (FK → Lecturer), `term` ("2025-S2"), `section` (A or B) TEXT
-- Business rules: (course_id, term, stream) should be UNIQUE
 
 5. student_enrollments - A record linking a student to a class offering, including participation and final outcome.
 - Key attributes: `student_enrollments_id` (PK), `student_id` (FK → Student), `class_id` (FK → class), `enrolled_date` (TEXT), `status` (TEXT), `grade` (INT)
