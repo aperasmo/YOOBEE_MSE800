@@ -6,7 +6,7 @@ The database will store students, lecturers, the courses offered, and student en
 The system will records:
 - Student enrollment – Identifies which student is registered in which class
 - Instructor assignment – Specifies which instructor teaches each class
-- Academic outcome – Records the student’s final result in the clas
+- Academic outcome – Records the student’s final result in the class
 
 
 # Main entities 
@@ -26,7 +26,14 @@ The system will records:
 5. student_enrollments - A record linking a student to a class offering, including participation and final outcome.
 - Key attributes: `student_enrollments_id` (PK), `student_id` (FK → Student), `class_id` (FK → class), `enrolled_date` (TEXT), `status` (TEXT), `grade` (INT)
 
-#Database Diagram
+# Relationships:
+- Student enrolls in Class (M:N → implemented via Student_Enrollments)
+- Class offers Course (M:1)
+- Lecturer teaches Class (1:M)
+- Student_Enrollments links Student and Class
+
+
+# Database Diagram
 
 ![Yoobee Students Database Schema](img/YB_Diagram.png)
 
