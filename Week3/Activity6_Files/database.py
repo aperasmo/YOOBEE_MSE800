@@ -53,7 +53,8 @@ class Database:
           term VARCHAR(20) NOT NULL,
           section TEXT NOT NULL,
           FOREIGN KEY (course_id) REFERENCES course(course_id),
-          FOREIGN KEY (lecturer_id) REFERENCES lecturer(lecturer_id)
+          FOREIGN KEY (lecturer_id) REFERENCES lecturer(lecturer_id),
+          UNIQUE(course_id, lecturer_id, term, section)
         )
         ''')
         

@@ -214,8 +214,9 @@ class YOOBEESystem: # Main class to manage the Yoobee College system
             print("\n--- Student Enrollment Management ---")
             print("1. Add Student Enrollment")
             print("2. View Student Enrollments")
-            print("3. Delete Student Enrollment")
-            print("4. Back")
+            print("3. Update Student Enrollment")
+            print("4. Delete Student Enrollment")
+            print("5. Back")
             
             choice = input("Choose option: ")
             
@@ -247,7 +248,21 @@ class YOOBEESystem: # Main class to manage the Yoobee College system
                     grade = enrollment[8] if enrollment[8] else "N/A"
                     print(f"ID: {enrollment[0]}, Student: {enrollment[1]}, Course: {enrollment[2]} - {enrollment[3]}, Term: {enrollment[4]}, Section: {enrollment[5]}, Enrolled: {enrollment[6]}, Status: {enrollment[7]}, Grade: {grade}")
             
-            elif choice == "3": #
+            elif choice == "3":
+                enrollments = self.enrollment_mgr.view_enrollments()
+                print("\n--- Current Student Enrollments ---")
+                for enrollment in enrollments:
+                    grade = enrollment[8] if enrollment[8] else "N/A"
+                    print(f"ID: {enrollment[0]}, Student: {enrollment[1]}, Course: {enrollment[2]} - {enrollment[3]}, Status: {enrollment[7]}, Grade: {grade}")
+                
+                enrollment_id = int(input("Enter enrollment ID to update: "))
+                print("\nStatus options: Enrolled, Completed, Withdrawn, Failed")
+                new_status = input("New status: ")
+                grade_input = input("New grade (0-100 or press Enter to keep current): ")
+                new_grade = int(grade_input) if grade_input else None
+                self.enrollment_mgr.update_enrollment(enrollment_id, new_status, new_grade)
+            
+            elif choice == "4":
                 enrollments = self.enrollment_mgr.view_enrollments()
                 for enrollment in enrollments:
                     print(f"ID: {enrollment[0]}, Student: {enrollment[1]}, Course: {enrollment[2]}")
@@ -257,7 +272,7 @@ class YOOBEESystem: # Main class to manage the Yoobee College system
                 if confirm.lower() == 'y':
                     self.enrollment_mgr.delete_enrollment(enrollment_id)
             
-            elif choice == "4": # Go back to main menu
+            elif choice == "5": # Go back to main menu
                 break
     
     def user_menu(self):

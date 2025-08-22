@@ -114,13 +114,48 @@ class ClassManager:
         conn = self.db.connect()
         cursor = conn.cursor()
         try:
+            # Check for duplicate class (same course, lecturer, term, and section)
+            cursor.execute("""
+                SELECT COUNT(*) FROM class 
+                WHERE course_id = ? AND lecturer_id = ? AND term = ? AND section = ?
+            """, (course_id, lecturer_id, term, section))
+            
+            duplicate_count = cursor.fetchone()[0]
+            
+            if duplicate_count > 0:
+                print("❌ Error: A class with the same course, lecturer, term, and section already exists!")
+                print("   Duplicate classes are not allowed.")
+                conn.close()
+                return False
+            
+            # Also check for lecturer conflict (same lecturer, term, section but different course)
+            cursor.execute("""
+                SELECT c.course_code, c.name FROM class cl
+                JOIN course c ON cl.course_id = c.course_id
+                WHERE cl.lecturer_id = ? AND cl.term = ? AND cl.section = ?
+            """, (lecturer_id, term, section))
+            
+            existing_class = cursor.fetchone()
+            
+            if existing_class:
+                print(f"❌ Error: Lecturer is already assigned to another course in {term}, Section {section}")
+                print(f"   Existing assignment: {existing_class[0]} - {existing_class[1]}")
+                print("   A lecturer cannot teach multiple courses in the same term and section.")
+                conn.close()
+                return False
+            
+            # If no duplicates found, proceed with insertion
             cursor.execute("INSERT INTO class (course_id, lecturer_id, term, section) VALUES (?, ?, ?, ?)", 
                           (course_id, lecturer_id, term, section))
             conn.commit()
-            print("Class added!")
-        except:
-            print("Error adding class")
-        conn.close()
+            print("✅ Class added successfully!")
+            return True
+            
+        except sqlite3.Error as e:
+            print(f"❌ Database error: {e}")
+            return False
+        finally:
+            conn.close()
     
     def view_classes(self):
         conn = self.db.connect()
@@ -172,6 +207,25 @@ class StudentEnrollmentManager:
         enrollments = cursor.fetchall()
         conn.close()
         return enrollments
+    
+    def update_enrollment(self, enrollment_id, status, grade=None):
+        conn = self.db.connect()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("UPDATE student_enrollments SET status=?, grade=? WHERE student_enrollments_id=?", 
+                          (status, grade, enrollment_id))
+            conn.commit()
+            if cursor.rowcount > 0:
+                print("✅ Student enrollment updated successfully!")
+                return True
+            else:
+                print("❌ Enrollment not found.")
+                return False
+        except sqlite3.Error as e:
+            print(f"❌ Database error: {e}")
+            return False
+        finally:
+            conn.close()
     
     def delete_enrollment(self, enrollment_id):
         conn = self.db.connect()

@@ -39,12 +39,50 @@ def add_Class(course_id,lecturer_id,term,section):
     conn = create_connection()
     cursor = conn.cursor()
     try:
+        # Check for duplicate class (same course, lecturer, term, and section)
+        cursor.execute("""
+            SELECT COUNT(*) FROM `class` 
+            WHERE course_id = ? AND lecturer_id = ? AND term = ? AND section = ?
+        """, (course_id, lecturer_id, term, section))
+        
+        duplicate_count = cursor.fetchone()[0]
+        
+        if duplicate_count > 0:
+            print("Error: A class with the same course, lecturer, term, and section already exists!")
+            print("Duplicate classes are not allowed.")
+            conn.close()
+            return False
+        
+        # Also check for lecturer conflict (same lecturer, term, section but different course)
+        cursor.execute("""
+            SELECT c.course_code, c.name FROM `class` cl
+            JOIN course c ON cl.course_id = c.course_id
+            WHERE cl.lecturer_id = ? AND cl.term = ? AND cl.section = ?
+        """, (lecturer_id, term, section))
+        
+        existing_class = cursor.fetchone()
+        
+        if existing_class:
+            print(f"Error: Lecturer is already assigned to another course in {term}, Section {section}")
+            print(f"Existing assignment: {existing_class[0]} - {existing_class[1]}")
+            print("A lecturer cannot teach multiple courses in the same term and section.")
+            conn.close()
+            return False
+        
+        # If no duplicates found, proceed with insertion
         cursor.execute("INSERT INTO `class` (course_id,lecturer_id,term,section) VALUES (?, ?,?,?)", (course_id,lecturer_id,term,section))
         conn.commit()
-        print(" Class added successfully.")
-    except sqlite3.IntegrityError:
-        print("Class must be unique.")
-    conn.close()
+        print("Class added successfully.")
+        return True
+        
+    except sqlite3.IntegrityError as e:
+        print(f"Database integrity error: {e}")
+        return False
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return False
+    finally:
+        conn.close()
 
 def add_Student_enrollments(student_id,class_id,enrolled_date,status,grade):
     conn = create_connection()
@@ -111,7 +149,7 @@ def add_user(login, password, name, contact_number, status):
         cursor.execute("INSERT INTO users (login, password, name, contact_number, status) VALUES (?, ?, ?, ?, ?)", 
                       (login, password, name, contact_number, status))
         conn.commit()
-        print(f"✅ User '{login}' added successfully.")
+        print(f"User '{login}' added successfully.")
         return True
     except sqlite3.IntegrityError as e:
         print(f"Database error: {e}")
@@ -225,10 +263,10 @@ def update_Student(student_id, name, contact_number, email, status):
         """, (name, contact_number, email, status, student_id))
         conn.commit()
         if cursor.rowcount > 0:
-            print("✅ Student updated successfully.")
+            print("Student updated successfully.")
             return True
         else:
-            print("❌ Student not found.")
+            print("Student not found.")
             return False
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -247,13 +285,13 @@ def update_user(user_id, login, password, name, contact_number, status):
         """, (login, password, name, contact_number, status, user_id))
         conn.commit()
         if cursor.rowcount > 0:
-            print("✅ User updated successfully.")
+            print("User updated successfully.")
             return True
         else:
-            print("❌ User not found.")
+            print("User not found.")
             return False
     except sqlite3.IntegrityError:
-        print("❌ Login already exists. Please choose a different login.")
+        print("Login already exists. Please choose a different login.")
         return False
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -272,10 +310,10 @@ def update_Course(course_id, course_code, name, credits):
         """, (course_code, name, credits, course_id))
         conn.commit()
         if cursor.rowcount > 0:
-            print("✅ Course updated successfully.")
+            print("Course updated successfully.")
             return True
         else:
-            print("❌ Course not found.")
+            print("Course not found.")
             return False
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -294,10 +332,10 @@ def update_Lecturer(lecturer_id, name, contact_number, email, department):
         """, (name, contact_number, email, department, lecturer_id))
         conn.commit()
         if cursor.rowcount > 0:
-            print("✅ Lecturer updated successfully.")
+            print("Lecturer updated successfully.")
             return True
         else:
-            print("❌ Lecturer not found.")
+            print("Lecturer not found.")
             return False
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -313,10 +351,10 @@ def delete_user(user_id):
         cursor.execute("DELETE FROM users WHERE user_id = ?", (user_id,))
         conn.commit()
         if cursor.rowcount > 0:
-            print("🗑️ User deleted successfully.")
+            print("User deleted successfully.")
             return True
         else:
-            print("❌ User not found.")
+            print("User not found.")
             return False
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -334,7 +372,7 @@ def delete_Course(course_id):
             print("🗑️ Course deleted successfully.")
             return True
         else:
-            print("❌ Course not found.")
+            print(" Course not found.")
             return False
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -352,7 +390,7 @@ def delete_Lecturer(lecturer_id):
             print("🗑️ Lecturer deleted successfully.")
             return True
         else:
-            print("❌ Lecturer not found.")
+            print("Lecturer not found.")
             return False
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -370,7 +408,29 @@ def delete_Class(class_id):
             print("🗑️ Class deleted successfully.")
             return True
         else:
-            print("❌ Class not found.")
+            print("Class not found.")
+            return False
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return False
+    finally:
+        conn.close()
+
+def update_Student_enrollment(enrollment_id, status, grade=None):
+    conn = create_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("""
+            UPDATE student_enrollments 
+            SET status = ?, grade = ?
+            WHERE student_enrollments_id = ?
+        """, (status, grade, enrollment_id))
+        conn.commit()
+        if cursor.rowcount > 0:
+            print("Student enrollment updated successfully.")
+            return True
+        else:
+            print("Student enrollment not found.")
             return False
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -388,7 +448,7 @@ def delete_Student_enrollment(enrollment_id):
             print("🗑️ Student enrollment deleted successfully.")
             return True
         else:
-            print("❌ Student enrollment not found.")
+            print("Student enrollment not found.")
             return False
     except sqlite3.Error as e:
         print(f"Database error: {e}")
