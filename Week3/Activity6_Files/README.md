@@ -95,6 +95,7 @@ This tracks which students are taking which classes:
   - You'll need: Which student, which class, enrollment date, status, and grade (optional)
   - Status examples: Enrolled, Completed, Withdrawn, Failed
   - Grades: 0-100 or leave blank
+- **Update Enrollments**: Update the Status and Grade of the Students
 - **View Enrollments**: See who's taking what
 - **Delete Enrollment**: Remove a student from a class
 
