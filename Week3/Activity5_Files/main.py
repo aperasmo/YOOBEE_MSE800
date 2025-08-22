@@ -1,7 +1,7 @@
 from database import create_table
-from student_manager import add_Student, view_Students, search_Student, delete_Student
+from student_manager import add_Student, view_Students, search_Student, delete_Student #    importing functions from student_manager.py
 
-def menu():
+def menu(): # Display the menu options
     print("\n==== Student Manager ====")
     print("1. Add Students")
     print("2. View All Students")
@@ -10,7 +10,7 @@ def menu():
     print("5. Exit")
 
 def main():
-    create_table()
+    create_table() # Create necessary tables in the database
     while True:
         menu()
         choice = input("Select an option (1-5): ")
