@@ -28,7 +28,9 @@ Academic outcome – Records the student’s final result in the class
 
 
 
+# Usecase Diagram
 
+![Yoobee College Database Schema](usecase_diagram.png)
 
 
  
