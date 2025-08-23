@@ -16,12 +16,14 @@ Academic outcome – Records the student’s final result in the class
 
 ## USE CASES
 1. System Admin manages(CRUD) users,students,classes,courses and student_enrollment 
-2. Students enroll/view class
-3. Students view grades
-4. Students update enrollment
-5. Lecturers teaches students
-6. Lecturers view students,class and courses
-7. Lecturers update grades
+2. Students enroll class
+3. Students view class
+4. Students update info
+5. Students view grades
+6. Students update enrollment
+7. Lecturers teaches students
+8. Lecturers view students,class and courses
+9. Lecturers update grades
 
 
 
