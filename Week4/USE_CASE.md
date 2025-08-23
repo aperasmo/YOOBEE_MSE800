@@ -38,6 +38,6 @@ Academic outcome – Records the student’s final result in the class
 # STEP 3
 - The use case diagram below represents the Yoobee College Management System. It shows how the actors—Student, Lecturer, and Admin—interact with the system and what each can accomplish. The diagram also highlights the relationships between use cases, including generalization to represent commmon behaviours between actors or use cases.
 
-It also illustrates dependencies between use cases, where <<include>> show the required functionality and <<extend>> represents as optional. 
+It also illustrates dependencies between use cases, where << include >> show the required functionality and << extend >> represents as optional. 
  
 ![Yoobee College Database Schema](3_usecase_diagram.png)
