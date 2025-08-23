@@ -4,7 +4,7 @@ Developing a small information system for Yoobee College. The database will stor
 The system will records:
 
 Student enrollment – Identifies which student is registered in which class
-Instructor assignment – Specifies which instructor teaches each class
+Lecturers assignment – Specifies which lecturers teaches each class
 Academic outcome – Records the student’s final result in the class
 
 
