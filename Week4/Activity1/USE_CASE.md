@@ -54,18 +54,5 @@ It also illustrates dependencies between use cases, where << include >> show the
 ![Yoobee College Database Schema](4_usecase_diagram_with_condition.png)
 
 
-## USE CASES ##                                               BRIEF USE CASE  DESCRIPTION
-1. Manage Course                                            - User/Actors can manage Courses by adding, viewing, updating and deleting course records with course codes, names, and credits
-2. Schedule Class Offering                                  - System Admin/Registrar creates class schedules by linking courses with specific terms, sections, and time slots for student enrollment
-3. Assign Lecturer to Class                                 - System Admin/Registrar assigns qualified lecturers to scheduled classes while preventing scheduling conflicts and ensuring proper coverage
-4. Manage Person                                            - Abstract use case that provides common person management functionality (name, contact, email) inherited by student and lecturer management
-5. Manage Student                                           - Academic Staff manages student records including personal information, contact details, academic status, and enrollment history through CRUD operations
-6. Manage Lecturer                                          - System Admin/Academic Staff manages lecturer profiles including personal information, department assignments, contact details, and teaching qualifications
-7. Manage Enrollment                                        - Academic Staff processes student enrollments by registering students for classes, tracking enrollment dates, and maintaining enrollment status
-8. Lookup Student                                           - System users search and retrieve specific student information using various criteria such as name, ID, or contact information for quick access
-9. Lookup Class                                             - System users search for class information including course details, lecturer assignments, schedules, and available sections
-10. Record Grade                                            - Lecturers and Academic Staff enter and update student grades (0-100 scale) for completed coursework and final assessments
-11. Update Enrollment Status                                - Academic Staff modifies student enrollment status (Enrolled, Completed, Withdrawn, Failed) based on academic progress and circumstances
-12. Manage Enrollment                                       - Comprehensive enrollment management including adding, viewing, updating, and removing student class registrations
-13. View Class (Registrar, Lecturer)                       - Registrar and Lecturers access class information including enrolled students, class schedules, course details, and section information
-14. View Student Academic Record (Student, Registrar)      - Students and Registrar access comprehensive academic records including enrollment history, grades, course completions, and academic standing
+## USE CASES BRIEF DESCRIPTION
+![Yoobee College Database Schema](use_case_description.png)
