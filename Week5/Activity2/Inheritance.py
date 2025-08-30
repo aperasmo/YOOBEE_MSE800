@@ -48,9 +48,12 @@ class Academic(Person):
         base_info = super().display_info()
         return f"{base_info}, Tax Code: {self.tax_code}, Salary: {self.salary}"
 
-if __name__ == "__main__":
+def main():
     student = Student("Allan", "123 Flat Bush St", 20, "S123", "A+")
     academic = Academic("Dr. Vian", "MIT", 45, "A456", "TX789", 100000)
 
     print(student.display_info())
     print(academic.display_info())
+
+if __name__ == "__main__":
+    main()
