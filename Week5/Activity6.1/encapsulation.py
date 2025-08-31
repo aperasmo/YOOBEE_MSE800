@@ -32,6 +32,7 @@ class Student:
             self.__grade = new_grade
             return f"Grade updated to {new_grade}"
         return "Invalid grade!"
+        
 
 # INHERITANCE + ENCAPSULATION
 class Stud_info(Student):
