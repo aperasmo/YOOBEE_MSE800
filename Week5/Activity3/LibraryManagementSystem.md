@@ -1,6 +1,6 @@
 #  Library Management System
 
-### Class Diagram
+## Class Diagram
 
 ![Yoobee College Database Schema](class_diagram.png)
 
@@ -14,7 +14,7 @@
 8. Fine: Overdue charge attached to a Loan; includes amount, paid flag, and paymentDate.
 
 
-### Use-Case Diagram
+## Use-Case Diagram
 
 ![Yoobee College Database Schema](use_case_diagram.png)
 
@@ -38,7 +38,7 @@
 5. Check Copy Availability: A physical copy exists that is not already on loan.
 
 
-### Sequence Diagram
+## Sequence Diagram
 
 ![Yoobee College Database Schema](SequenceDiagram/a_check_availability.png)
 ### A) Check Availability
@@ -95,7 +95,7 @@
 3. Member sees: No fine → 'Returned on time—thank you.' Fine due → 'Returned—You owe {amount} for {days} day(s).'
 
 
-### Activity Diagram
+## Activity Diagram
 
 ![Yoobee College Database Schema](ActivityDiagram/borrow_book.png)
 ### Borrow Book
