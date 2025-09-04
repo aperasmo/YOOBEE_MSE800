@@ -11,6 +11,16 @@
 # Then, we create Student and Academic classes that get these details from Person
 # but also have their own special information.
 
+#Can we update the code with adding a "Course" class to Week 5, Activity 3? See attached file: 
+# Yes we can add a Course class to the existing code structure.
+# The Course class can represent a course that students can enroll in.
+# The Course class should have attributes like course name, course code, and credits.
+# Then, we can create a Student class that inherits from Person and also has a list of courses they are enrolled in.
+# The Student class should have methods to add a course, remove a course, and display all enrolled courses.
+
+
+
+
 class Person:
     def __init__(self, name, address, age, ID):
         # Initialize basic person details
